@@ -21,8 +21,8 @@ const mongoSanitize = require("express-mongo-sanitize");
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
-// const dbUrl = process.env.DB_URL;
-const dbUrl = "mongodb://127.0.0.1:27017/yelp-camp";
+const dbUrl = process.env.DB_URL;
+// const dbUrl = "mongodb://127.0.0.1:27017/yelp-camp";
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -46,7 +46,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: "thisshouldbeabettersecret!",
+        secret: process.env.SECRET,
     },
 });
 
@@ -95,6 +95,7 @@ const connectSrcUrls = [
     "https://events.mapbox.com/",
 ];
 const fontSrcUrls = [];
+
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
