@@ -3,6 +3,19 @@ const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
 const Campground = require("../models/campground");
 const axios = require("axios");
+const fs = require("fs");
+
+// let cities;
+
+// fs.readFile("./cities.json", (err, data) => {
+//     if (err) {
+//         console.error(err);
+
+//         throw err;
+//     }
+//     cities = JSON.parse(data);
+//     console.dir(cities);
+// });
 
 mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp");
 
